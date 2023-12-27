@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import useStyleApp from "./style.js";
 import ダッシュボード from "./components/dashboard/index.js";
 import "./index.css";
@@ -10,15 +10,25 @@ import ログイン from './components/login/login';
 
 const App = (props) => {
   const classes = useStyleApp();
-
+  const token = localStorage.getItem("accessToken")
   return (
     <div className={classes.app}>
       <ContextWrapper>
         <Routes>
-          <Route path="/" element={<ダッシュボード />} />
-          <Route path="/register" element={<登録 />} />
-          <Route path="/login" element={<ログイン />} />
-          <Route path="/profile" element={<プロフィル />} />
+          {
+            !token
+            && <>
+              <Route path="*" element={<Navigate to="/login" />} />
+            </>
+          }
+          {
+            token && <>
+              <Route path="/" element={<ダッシュボード />} />
+              <Route path="/register" element={<登録 />} />
+              <Route path="/login" element={<ログイン />} />
+              <Route path="/profile" element={<プロフィル />} />
+            </>
+          }
         </Routes>
       </ContextWrapper>
     </div>

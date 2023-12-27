@@ -48,6 +48,7 @@ const ログイン = (props) => {
                 localStorage.setItem("_id", result._id)
                 localStorage.setItem("admin", result.admin)
                 navigate("/");
+                window.location.reload()
 
               }
               catch (e) {
