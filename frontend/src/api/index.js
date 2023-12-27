@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import * as data from "../sample-data"
 import axios from "axios"
 
-
+const API_URL= "https://ta2.onrender.com"
 const baseURL = "http://localhost:4000/api/v1"
 var accessToken = ""
 const getTaskList = () => {
@@ -22,7 +22,7 @@ const getGroupList = () => {
 }
 
 const handleLogin = async (username, password) => {
-  const response = await (fetch('http://localhost:4000/api/v1/auth/login'), {
+  const response = await (fetch(API_URL + '/api/v1/auth/login'), {
     "method": "POST",
     "headers": {
       "Content-Type": 'application/json'
@@ -44,7 +44,7 @@ const handleLogin = async (username, password) => {
 
 const createTask= async (data)=> {
   const res= await axios({
-    url: "http://localhost:4000/api/v1/workspaces/task/create",
+    url: API_URL + "/api/v1/workspaces/task/create",
     method: "post",
     headers: {
       "Authorization": "Bearer " + localStorage.getItem("accessToken")
@@ -60,7 +60,7 @@ const createTask= async (data)=> {
 
 const updateTask= async (data)=> {
   const res= await axios({
-    url: "http://localhost:4000/api/v1/workspaces/task/update",
+    url: API_URL + "/api/v1/workspaces/task/update",
     method: "post",
     headers: {
       "Authorization": "Bearer " + localStorage.getItem("accessToken")
@@ -75,7 +75,7 @@ const updateTask= async (data)=> {
 
 const loginApi= async (data)=> {
   const res= await axios({
-    url: "http://localhost:4000/api/v1/auth/login",
+    url: API_URL + "/api/v1/auth/login",
     method: "post",
     data: {
       ...data,
@@ -87,7 +87,7 @@ const loginApi= async (data)=> {
 
 const signupApi= async (data)=> {
   const res= await axios({
-    url: "http://localhost:4000/api/v1/auth/signup",
+    url: API_URL + "/api/v1/auth/signup",
     method: "post",
     data: {
       ...data,
@@ -99,7 +99,7 @@ const signupApi= async (data)=> {
 
 const getTask= async (data)=> {
   const res= await axios({
-    url: "http://localhost:4000/api/v1/dashboard/calendar",
+    url: API_URL + "/api/v1/dashboard/calendar",
     method: "get",
     headers: {
       "Authorization": "Bearer " + localStorage.getItem("accessToken")
@@ -114,7 +114,7 @@ const getTask= async (data)=> {
 
 const deleteTask= async (data)=> {
   const res= await axios({
-    url: "http://localhost:4000/api/v1/workspaces/task/delete",
+    url: API_URL + "/api/v1/workspaces/task/delete",
     method: "post",
     headers: {
       "Authorization": "Bearer " + localStorage.getItem("accessToken")
