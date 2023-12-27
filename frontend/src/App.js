@@ -19,6 +19,9 @@ const App = (props) => {
             !token
             && <>
               <Route path="*" element={<Navigate to="/login" />} />
+              <Route path="/login" element={<ログイン />} />
+              <Route path="/register" element={<登録 />} />
+
             </>
           }
           {
